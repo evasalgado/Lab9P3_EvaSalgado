@@ -19,7 +19,58 @@ void GestorVentas::eliminarConcierto(int& indiceConcierto) {
 			cout << "Concierto eliminado correctamente"<<endl;
 		}
 	}
+	else {
+		cout << "lista vacia"<<endl;
+	}
 }
 void GestorVentas::venderEntrada(int indiceConcierto, int cantidad) {
-
+	int vendidos = conciertosDisponibles[indiceConcierto]->getEntradasVendidas() + cantidad;
+	if (!conciertosDisponibles.empty()) {
+		if (indiceConcierto >= 0 && indiceConcierto < conciertosDisponibles.size()) {
+			conciertosDisponibles[indiceConcierto]->setEntradasVendidas(vendidos);
+			cout << "Boletos vendidos exitosamente" << endl;
+		}
+	}
+	else {
+		cout << "lista vacia" << endl;
+	}
+}
+void GestorVentas::listarConciertos() {
+	for (int i = 0; i < conciertosDisponibles.size(); i++){
+		cout << i << ": " << conciertosDisponibles[i] << endl;
+	}
+}
+void GestorVentas::guardarConciertosCSV() {
+	string n = "", fc = "";
+	double pe = 0.0, tr = 0.0;
+	int ev = 0;
+	char delimitador = ',';
+	ofstream archivo("Conciertos.csv",ios::out);
+	if (!archivo){
+		cerr << "No se puede abrir el archivo";
+	}
+	for (int i = 0; i < conciertosDisponibles.size(); i++){
+		n = conciertosDisponibles[i]->getNombreBanda();
+		pe = conciertosDisponibles[i]->getPrecioEntrada();
+		fc = conciertosDisponibles[i]->getFechaConcierto();
+		tr = conciertosDisponibles[i]->getTotalRecaudado();
+		ev = conciertosDisponibles[i]->getEntradasVendidas();
+		archivo << n << delimitador<<pe << delimitador<<
+			fc << delimitador<<tr << delimitador<< ev << endl;
+		cout << "?";
+	}
+	cout << "listas agregadas correctamente"<<endl;
+}
+void GestorVentas::cargarConciertosCSV() {
+	ifstream archivo("Conciertos.csv", ios::in);
+	if (!archivo) {
+		cerr << "No se puede abrir el archivo";
+		exit(EXIT_FAILURE);
+	}
+	string n = "", fc = "";
+	double pe = 0.0, tr = 0.0;
+	int ev = 0;
+	cout << left << setw(10) << n << setw(13) << pe << setw(7)
+		<< fc << setw(8) << tr << setw(14) << ev << setw(12)
+		<< setprecision(5) << right << ev << endl;
 }

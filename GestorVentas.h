@@ -1,4 +1,9 @@
 #pragma once
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <fstream>
+#include <cstdlib>
 #include "Concierto.h"
 #include <vector>
 class GestorVentas{
@@ -11,7 +16,7 @@ public :
 	void eliminarConcierto(int& indiceConcierto);
 	void venderEntrada(int indiceConcierto, int cantidad);
 	void listarConciertos();
-	void guardarConciertosCSv();
+	void guardarConciertosCSV();
 	void cargarConciertosCSV();
 	~GestorVentas();
 };
