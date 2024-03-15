@@ -5,6 +5,7 @@ Concierto::Concierto(string nombreBanda,
 	int codigo,
 	double totalRecaudado,
 	int entradasVendidas) {
+	this->codigo = codigo;
 	this->nombreBanda = nombreBanda;
 	this->precioEntrada = precioEntrada;
 	this->fechaConcierto = fechaConcierto;
@@ -51,6 +52,7 @@ Concierto::~Concierto() {
 	nombreBanda = "";
 	precioEntrada = 0.0;
 	fechaConcierto = "";
+	codigo = 0;
 	totalRecaudado = 0.0;
 	entradasVendidas = 0;
 }

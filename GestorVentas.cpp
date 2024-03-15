@@ -42,11 +42,16 @@ void GestorVentas::venderEntrada(int indiceConcierto, int cantidad) {
 	}
 }
 void GestorVentas::listarConciertos() {
-	for (int i = 0; i < conciertosDisponibles.size(); i++){
-		cout << i << "Banda: " << conciertosDisponibles[i]->getNombreBanda()
-			<<", Fecha: "<< conciertosDisponibles[i]->getFechaConcierto()
-			<<", Precio: "<< conciertosDisponibles[i]->getPrecioEntrada()
-			<<", Codigo: ";
+	if (!conciertosDisponibles.empty()){
+		for (int i = 0; i < conciertosDisponibles.size(); i++) {
+			cout << i << "Banda: " << conciertosDisponibles[i]->getNombreBanda()
+				<< ", Fecha: " << conciertosDisponibles[i]->getFechaConcierto()
+				<< ", Precio: " << conciertosDisponibles[i]->getPrecioEntrada()
+				<< ", Codigo: " << conciertosDisponibles[i]->getCodigo() << endl;
+		}
+	}
+	else {
+		cout << "Lista esta vacia"<<endl;
 	}
 }
 void GestorVentas::guardarConciertosCSV() {
@@ -82,4 +87,9 @@ void GestorVentas::cargarConciertosCSV() {
 	cout << left << setw(10) << n << setw(13) << pe << setw(7)
 		<< fc << setw(8) << tr << setw(14) << ev << setw(12)
 		<< setprecision(5) << right << ev << endl;
+}
+GestorVentas::~GestorVentas() {
+	for (Concierto* c : conciertosDisponibles) {
+		delete c;
+	}
 }

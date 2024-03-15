@@ -32,7 +32,12 @@ void vender_entrada() {
 	cout << "Ingrese el indice de la lista del concierto que desea vender entradas" << endl;
 	cin >> ind;
 	cout << "Ingrese la cantidad de entradas a vender";
+	cin >> inv;
 	gv.venderEntrada(ind,inv);
+}
+void listar_conciertos() {
+	cout << "Lista de conciertos: " << endl;
+	gv.listarConciertos();
 }
 int main(){ //inicio de programa
 	int op = 0;
@@ -43,7 +48,8 @@ int main(){ //inicio de programa
 			<<"3. Vender entrada\n"
 			<<"4. Listar Conciertos\n"
 			<<"5. Cargar Conciertos desde CSV\n"
-			<<"6. Guardar Conciertos en CSV";
+			<<"6. Guardar Conciertos en CSV\n"
+			<<"7. Salir"<<endl;
 		cin >> op;
 		switch (op) {
 		case 1: //ejercicio 1
@@ -56,7 +62,7 @@ int main(){ //inicio de programa
 			vender_entrada();
 			break;
 		case 4: //ejercicio 4
-
+			listar_conciertos();
 			break;
 		case 5: //ejercicio 5
 			break;
@@ -66,7 +72,7 @@ int main(){ //inicio de programa
 			cout << "Gracias por utilizar mi programa" << endl;
 			break;
 		default:
-			cout << "Numero ingresado no es valido";
+			cout << "Numero ingresado no es valido"<<endl;
 			break;
 		}//fin de caso switch 
 	} while (op!=7); //fin del ciclo;
