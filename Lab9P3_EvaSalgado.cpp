@@ -17,9 +17,22 @@ void agregar_concierto() {
 	getline(cin,fc);
 	cout << "Ingrese el codigo: " << endl;
 	cin >> code;
-	Concierto* c = new Concierto(nb,pe,fc,0.0,0);
+	Concierto* c = new Concierto(nb,pe,fc,code,0.0,0);
 	gv.agregarConcierto(c);
 	cout << "concierto agregado correctamente" << endl;
+}
+void eliminar_concierto() {
+	int ind;
+	cout << "Ingrese el indice de la lista del concierto a eliminar" << endl;
+	cin >> ind;
+	gv.eliminarConcierto(ind);
+}
+void vender_entrada() {
+	int ind, inv;
+	cout << "Ingrese el indice de la lista del concierto que desea vender entradas" << endl;
+	cin >> ind;
+	cout << "Ingrese la cantidad de entradas a vender";
+	gv.venderEntrada(ind,inv);
 }
 int main(){ //inicio de programa
 	int op = 0;
@@ -37,14 +50,20 @@ int main(){ //inicio de programa
 			agregar_concierto();
 			break;
 		case 2://ejercicio 2
+			eliminar_concierto();
 			break;
 		case 3: //ejercicio 3
+			vender_entrada();
 			break;
 		case 4: //ejercicio 4
+
 			break;
 		case 5: //ejercicio 5
 			break;
 		case 6: //ejercicio 6
+			break;
+		case 7:
+			cout << "Gracias por utilizar mi programa" << endl;
 			break;
 		default:
 			cout << "Numero ingresado no es valido";

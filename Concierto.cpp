@@ -1,9 +1,10 @@
 #include "Concierto.h"
-Concierto::Concierto(string nombreBanda = "",
-	double precioEntrada = 0.0,
-	string fechaConcierto = "",
-	double totalRecaudado = 0.0,
-	int entradasVendidas = 0) {
+Concierto::Concierto(string nombreBanda,
+	double precioEntrada,
+	string fechaConcierto,
+	int codigo,
+	double totalRecaudado,
+	int entradasVendidas) {
 	this->nombreBanda = nombreBanda;
 	this->precioEntrada = precioEntrada;
 	this->fechaConcierto = fechaConcierto;
@@ -27,6 +28,12 @@ string Concierto::getFechaConcierto() const{
 }
 void Concierto::setFechaConcierto(string& fechaConcierto) {
 	this->fechaConcierto = fechaConcierto;
+}
+int Concierto::getCodigo() const {
+	return codigo;
+}
+void Concierto::setCodigo(int& codigo) {
+	this->codigo = codigo;
 }
 double Concierto::getTotalRecaudado() const {
 	return totalRecaudado;

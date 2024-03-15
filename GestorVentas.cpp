@@ -25,10 +25,16 @@ void GestorVentas::eliminarConcierto(int& indiceConcierto) {
 }
 void GestorVentas::venderEntrada(int indiceConcierto, int cantidad) {
 	int vendidos = conciertosDisponibles[indiceConcierto]->getEntradasVendidas() + cantidad;
+	double entradas = conciertosDisponibles[indiceConcierto]->getPrecioEntrada() * cantidad;
 	if (!conciertosDisponibles.empty()) {
 		if (indiceConcierto >= 0 && indiceConcierto < conciertosDisponibles.size()) {
 			conciertosDisponibles[indiceConcierto]->setEntradasVendidas(vendidos);
 			cout << "Boletos vendidos exitosamente" << endl;
+			cout << "Resumen de Venta" << endl
+				<< "Banda: " << conciertosDisponibles[indiceConcierto]->getNombreBanda() << endl
+				<< "Fecha: " << conciertosDisponibles[indiceConcierto]->getFechaConcierto() << endl
+				<< "Entradas Compradas: " << cantidad << endl
+				<<"Total Pagado: $" << entradas << endl;
 		}
 	}
 	else {
@@ -37,7 +43,10 @@ void GestorVentas::venderEntrada(int indiceConcierto, int cantidad) {
 }
 void GestorVentas::listarConciertos() {
 	for (int i = 0; i < conciertosDisponibles.size(); i++){
-		cout << i << ": " << conciertosDisponibles[i] << endl;
+		cout << i << "Banda: " << conciertosDisponibles[i]->getNombreBanda()
+			<<", Fecha: "<< conciertosDisponibles[i]->getFechaConcierto()
+			<<", Precio: "<< conciertosDisponibles[i]->getPrecioEntrada()
+			<<", Codigo: ";
 	}
 }
 void GestorVentas::guardarConciertosCSV() {
