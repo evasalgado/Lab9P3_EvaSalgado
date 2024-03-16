@@ -44,7 +44,7 @@ void GestorVentas::venderEntrada(int indiceConcierto, int cantidad) {
 void GestorVentas::listarConciertos() {
 	if (!conciertosDisponibles.empty()){
 		for (int i = 0; i < conciertosDisponibles.size(); i++) {
-			cout << i << "Banda: " << conciertosDisponibles[i]->getNombreBanda()
+			cout << i << " Banda: " << conciertosDisponibles[i]->getNombreBanda()
 				<< ", Fecha: " << conciertosDisponibles[i]->getFechaConcierto()
 				<< ", Precio: " << conciertosDisponibles[i]->getPrecioEntrada()
 				<< ", Codigo: " << conciertosDisponibles[i]->getCodigo() << endl;
@@ -55,25 +55,30 @@ void GestorVentas::listarConciertos() {
 	}
 }
 void GestorVentas::guardarConciertosCSV() {
-	string n = "", fc = "";
-	double pe = 0.0, tr = 0.0;
-	int ev = 0;
-	char delimitador = ',';
-	ofstream archivo("Conciertos.csv",ios::out);
-	if (!archivo){
-		cerr << "No se puede abrir el archivo";
+	if (!conciertosDisponibles.empty()){
+		string n = "", fc = "";
+		double pe = 0.0, tr = 0.0;
+		int ev = 0;
+		char delimitador = ',';
+		ofstream archivo("Conciertos.csv", ios::app);
+		if (!archivo) {
+			cerr << "No se puede abrir el archivo";
+		}
+		for (int i = 0; i < conciertosDisponibles.size(); i++) {
+			n = conciertosDisponibles[i]->getNombreBanda();
+			pe = conciertosDisponibles[i]->getPrecioEntrada();
+			fc = conciertosDisponibles[i]->getFechaConcierto();
+			tr = conciertosDisponibles[i]->getTotalRecaudado();
+			ev = conciertosDisponibles[i]->getEntradasVendidas();
+			archivo << n << delimitador << pe << delimitador <<
+				fc << delimitador << tr << delimitador << ev << endl;
+			cout << "?";
+		}
+		cout << "listas agregadas correctamente" << endl;
 	}
-	for (int i = 0; i < conciertosDisponibles.size(); i++){
-		n = conciertosDisponibles[i]->getNombreBanda();
-		pe = conciertosDisponibles[i]->getPrecioEntrada();
-		fc = conciertosDisponibles[i]->getFechaConcierto();
-		tr = conciertosDisponibles[i]->getTotalRecaudado();
-		ev = conciertosDisponibles[i]->getEntradasVendidas();
-		archivo << n << delimitador<<pe << delimitador<<
-			fc << delimitador<<tr << delimitador<< ev << endl;
-		cout << "?";
+	else {
+		cout << "Lista vacia" << endl;
 	}
-	cout << "listas agregadas correctamente"<<endl;
 }
 void GestorVentas::cargarConciertosCSV() {
 	ifstream archivo("Conciertos.csv", ios::in);
@@ -84,9 +89,10 @@ void GestorVentas::cargarConciertosCSV() {
 	string n = "", fc = "";
 	double pe = 0.0, tr = 0.0;
 	int ev = 0;
-	cout << left << setw(10) << n << setw(13) << pe << setw(7)
+	cout << left << setw(0) << n << setw(1) << pe << setw(7)
 		<< fc << setw(8) << tr << setw(14) << ev << setw(12)
 		<< setprecision(5) << right << ev << endl;
+	cout << "Ventas cargadas correctamente" << endl;
 }
 GestorVentas::~GestorVentas() {
 	for (Concierto* c : conciertosDisponibles) {

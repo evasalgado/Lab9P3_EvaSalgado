@@ -19,7 +19,6 @@ void agregar_concierto() {
 	cin >> code;
 	Concierto* c = new Concierto(nb,pe,fc,code,0.0,0);
 	gv.agregarConcierto(c);
-	cout << "concierto agregado correctamente" << endl;
 }
 void eliminar_concierto() {
 	int ind;
@@ -29,9 +28,9 @@ void eliminar_concierto() {
 }
 void vender_entrada() {
 	int ind, inv;
-	cout << "Ingrese el indice de la lista del concierto que desea vender entradas" << endl;
+	cout << "Ingrese el indice de la lista del concierto que desea vender entradas: " << endl;
 	cin >> ind;
-	cout << "Ingrese la cantidad de entradas a vender";
+	cout << "Ingrese la cantidad de entradas a vender: "<<endl;
 	cin >> inv;
 	gv.venderEntrada(ind,inv);
 }
@@ -65,8 +64,10 @@ int main(){ //inicio de programa
 			listar_conciertos();
 			break;
 		case 5: //ejercicio 5
+			gv.cargarConciertosCSV();
 			break;
 		case 6: //ejercicio 6
+			gv.guardarConciertosCSV();
 			break;
 		case 7:
 			cout << "Gracias por utilizar mi programa" << endl;
