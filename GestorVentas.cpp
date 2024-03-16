@@ -1,4 +1,5 @@
 #include "GestorVentas.h"
+#include <sstream>
 GestorVentas::GestorVentas() {
 	this->conciertosDisponibles = conciertosDisponibles;
 }
@@ -49,6 +50,7 @@ void GestorVentas::listarConciertos() {
 				<< ", Precio: " << conciertosDisponibles[i]->getPrecioEntrada()
 				<< ", Codigo: " << conciertosDisponibles[i]->getCodigo() << endl;
 		}
+		cout << endl;
 	}
 	else {
 		cout << "Lista esta vacia"<<endl;
@@ -88,10 +90,19 @@ void GestorVentas::cargarConciertosCSV() {
 	}
 	string n = "", fc = "";
 	double pe = 0.0, tr = 0.0;
-	int ev = 0;
-	cout << left << setw(0) << n << setw(1) << pe << setw(7)
+	int code=0, ev = 0;
+	getline(archivo, n);
+	istringstream iss(n);
+	iss.ignore();
+	getline(archivo, fc);
+	iss.ignore();
+	Concierto* conciertos = new Concierto(n,pe,fc,code,tr,ev);
+	agregarConcierto(conciertos);
+	cout << "Cargado correctamente" << endl;
+
+	/*cout << left << setw(0) << n << setw(1) << pe << setw(7)
 		<< fc << setw(8) << tr << setw(14) << ev << setw(12)
-		<< setprecision(5) << right << ev << endl;
+		<< setprecision(5) << right << ev << endl;*/
 	cout << "Ventas cargadas correctamente" << endl;
 }
 GestorVentas::~GestorVentas() {

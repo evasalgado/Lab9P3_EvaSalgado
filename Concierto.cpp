@@ -34,7 +34,9 @@ int Concierto::getCodigo() const {
 	return codigo;
 }
 void Concierto::setCodigo(int& codigo) {
-	this->codigo = codigo;
+	if (codigo>=1000&&codigo<=9999){
+		this->codigo = codigo;
+	}
 }
 double Concierto::getTotalRecaudado() const {
 	return totalRecaudado;
